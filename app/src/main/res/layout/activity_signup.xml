@@ -5,7 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignupActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:gravity="center">
+    <ImageView
+        android:src="@drawable/baseline_add_to_photos_24"
+        android:id="@+id/signupActivity_imageview_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="50dp" />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
