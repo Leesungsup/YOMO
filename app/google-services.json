@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "533016015587",
+    "project_id": "yogi-2c966",
+    "storage_bucket": "yogi-2c966.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533016015587:android:41820af81ba979a4e10bd6",
+        "android_client_info": {
+          "package_name": "com.example.talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533016015587-0d8p9pmpcvk19jfna442vqbng8vudo3k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.talk",
+            "certificate_hash": "29ebbf95b7db09fcfbd269543c008bc0f31965c3"
+          }
+        },
+        {
+          "client_id": "533016015587-4psapc4ar10t8c69ems28gerb967okfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7TfmDfOSmBgwj-vHy1v61hoohlmzZlik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533016015587-4psapc4ar10t8c69ems28gerb967okfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
