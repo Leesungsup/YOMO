@@ -20,7 +20,9 @@
             android:id="@+id/signupActivity_edittext_email"
             android:hint="email"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="#FAA51A"
+            android:layout_margin="5dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -29,7 +31,9 @@
             android:id="@+id/signupActivity_edittext_name"
             android:hint="name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="#FAA51A"
+            android:layout_margin="5dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -37,8 +41,11 @@
         <EditText
             android:id="@+id/signupActivity_edittext_password"
             android:hint="password"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="#FAA51A"
+            android:layout_margin="5dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:id="@+id/signupActivity_button_signup"
