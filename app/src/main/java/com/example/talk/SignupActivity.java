@@ -21,6 +21,7 @@ import android.widget.ImageView;
 
 import com.example.talk.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,7 +71,7 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(email.getText().toString() == null || name.getText().toString() == null || password.getText().toString()==null){
+                if(email.getText().toString() == null || name.getText().toString() == null || password.getText().toString()==null || imageUri==null){
                     return;
                 }
 
@@ -109,7 +110,16 @@ public class SignupActivity extends AppCompatActivity {
                                     UserModel userModel = new UserModel();
                                     userModel.userName = name.getText().toString();
                                     userModel.profileImageUrl = imageUrl.getResult().toString();
-                                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel);
+                                    userModel.uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                                    userModel.level=1;
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel).addOnSuccessListener(new OnSuccessListener<Void>(){
+
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            SignupActivity.this.finish();
+                                        }
+                                    });
+
                                 }
                             });
                         }else {
