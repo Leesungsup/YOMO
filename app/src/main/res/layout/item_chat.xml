@@ -4,14 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="70dp">
     <ImageView
-        android:layout_margin="10dp"
+        android:id="@+id/chatitem_imageview"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/chatitem_imageview"
-        />
-    <TextView
-        android:id="@+id/chatitem_textview_title"
-        android:text="방 이름"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_margin="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/chatitem_textview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="방 이름" />
+
+        <TextView
+            android:id="@+id/chatitem_textview_lastMessage"
+            android:text="마지막 메세지"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>
