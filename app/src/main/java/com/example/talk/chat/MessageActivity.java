@@ -45,6 +45,7 @@ public class MessageActivity extends AppCompatActivity {
     private String chatRoomUid;
     private RecyclerView recyclerView;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -231,5 +232,11 @@ public class MessageActivity extends AppCompatActivity {
                 textView_timestamp = (TextView)view.findViewById(R.id.messageItem_textview_timestamp);
             }
         }
+    }
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.fromleft,R.anim.toright);
     }
 }
