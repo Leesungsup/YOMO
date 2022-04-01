@@ -343,7 +343,9 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
-        databaseReference.removeEventListener(valueEventListener);
+        if(valueEventListener != null){
+            databaseReference.removeEventListener(valueEventListener);
+        }
         finish();
         overridePendingTransition(R.anim.fromleft,R.anim.toright);
     }
