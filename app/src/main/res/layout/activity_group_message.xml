@@ -23,4 +23,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="보내기" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/groupMessageActivity_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="683dp"
+        android:layout_above="@+id/groupMessageActivity_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 </RelativeLayout>
