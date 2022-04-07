@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (!task.isSuccessful()) {
                             //로그인 실패한부분
-                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
