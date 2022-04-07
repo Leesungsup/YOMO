@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
         mFirebaseRemoteConfig.setDefaultsAsync(R.xml.defalut_config);
+
+
         mFirebaseRemoteConfig.fetch(0)
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             builder.setMessage(splash_message).setPositiveButton("확인", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+
                     finish();
                 }
             });
