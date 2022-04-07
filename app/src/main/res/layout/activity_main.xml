@@ -9,8 +9,8 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="360px"
-        android:layout_height="324px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/yomo1" />
 
 </LinearLayout>
