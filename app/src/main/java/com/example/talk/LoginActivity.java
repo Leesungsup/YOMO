@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth.signOut();
 
         String loading_background=FirebaseRemoteConfig.getString(getString(R.string.rc_color));
+        //일정 버전 이상만 사용가능하도록
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.parseColor(loading_background));
         }
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 loginEvent();
             }
         });

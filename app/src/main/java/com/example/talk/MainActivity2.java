@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity2 extends AppCompatActivity {
-
+    //메인화면
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

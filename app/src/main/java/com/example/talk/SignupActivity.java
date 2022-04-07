@@ -71,14 +71,16 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //email, 이름, 비밀번호, 사진이 있는지 확인
                 if(email.getText().toString() == null || name.getText().toString() == null || password.getText().toString()==null || imageUri==null){
                     return;
                 }
-
+                //회원가입
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            //uid 받아오기
                             final String uid = task.getResult().getUser().getUid();
                             /*final Uri file = Uri.fromFile(new File(pathUri));
                             StorageReference storageReference = mStorage.getReference()
@@ -101,6 +103,7 @@ public class SignupActivity extends AppCompatActivity {
                                 }
 
                             });*/
+                            //firebase realdatabase에 이미지주소 저장
                             FirebaseStorage.getInstance().getReference().child("userImages").child(uid).putFile(imageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -112,6 +115,7 @@ public class SignupActivity extends AppCompatActivity {
                                     userModel.profileImageUrl = imageUrl.getResult().toString();
                                     userModel.uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
                                     userModel.level=1;
+                                    //사용자 정보 realdatabase에 저장
                                     FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(userModel).addOnSuccessListener(new OnSuccessListener<Void>(){
 
                                         @Override
@@ -132,6 +136,7 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+    //사진선택
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -20,6 +20,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import java.io.Console;
 
 public class MainActivity extends AppCompatActivity {
+    //첫화면
     private LinearLayout linearLayout;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     @Override
