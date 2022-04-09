@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -85,19 +87,23 @@ public class MessageActivity extends AppCompatActivity {
                     FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+                            //FirebaseDatabase.getInstance().getReference().child("chatrooms").child(chatRoomUid).child("comments").push();
                             checkChatRoom();
                         }
                     });
                 } else {
+
                     ChatModel.Comment comment = new ChatModel.Comment();
                     comment.uid = uid;
                     comment.message = editText.getText().toString();
                     comment.timestamp= ServerValue.TIMESTAMP;
+                    Log.v("coqfgg","1111111111111111111111111111comment : "+chatRoomUid+" "+comment);
                     FirebaseDatabase.getInstance().getReference().child("chatrooms").child(chatRoomUid).child("comments").push().setValue(comment).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-
-                            sendGcm();
+                            Log.v("coqfgg","333333333333333333333333333333333comment : "+chatRoomUid+" "+comment);
+                            //Toast.makeText()
+                            //sendGcm();
                             editText.setText("");
                         }
                     });
@@ -157,11 +163,11 @@ public class MessageActivity extends AppCompatActivity {
                     });
                     return;
                 }
-
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     ChatModel chatModel = item.getValue(ChatModel.class);
                     if (chatModel.users.containsKey(destinatonUid) && chatModel.users.size() == 2) {
                         chatRoomUid = item.getKey();
+                        Log.v("coqfgg","222222222222222222222222222222222comment : "+chatRoomUid);
                         button.setEnabled(true);
                         recyclerView.setLayoutManager(new LinearLayoutManager(MessageActivity.this));
                         recyclerView.setAdapter(new RecyclerViewAdapter());
@@ -213,8 +219,10 @@ public class MessageActivity extends AppCompatActivity {
                         readUsersMap.put(key,comment_modify);
                         comments.add(comment_origin);
                     }
-                    if (!comments.get(comments.size() - 1).readUsers.containsKey(uid)) {
+                    notifyDataSetChanged();
 
+                    recyclerView.scrollToPosition(comments.size() - 1);
+                    /*if (!comments.get(comments.size() - 1).readUsers.containsKey(uid)) {
 
                         FirebaseDatabase.getInstance().getReference().child("chatrooms").child(chatRoomUid).child("comments")
                                 .updateChildren(readUsersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -227,7 +235,7 @@ public class MessageActivity extends AppCompatActivity {
                     } else {
                         notifyDataSetChanged();
                         recyclerView.scrollToPosition(comments.size() - 1);
-                    }
+                    }*/
 
                 }
 
