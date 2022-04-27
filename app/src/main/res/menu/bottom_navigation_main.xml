@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_people"
-        android:icon="@drawable/baseline_people_black_24"
-        android:title="People"/>
+        android:icon="@drawable/homeimage"
+        android:title="Home"/>
     <item
         android:id="@+id/action_chat"
-        android:icon="@drawable/baseline_chat_black_24"
+        android:icon="@drawable/chatimage"
         android:title="Chat"/>
     <item
         android:id="@+id/action_account"
-        android:icon="@drawable/baseline_account_circle_black_24"
-        android:title="Account"/>
+        android:icon="@drawable/infoimage"
+        android:title="MY"/>
 </menu>
