@@ -111,9 +111,8 @@ public class ChatFragment extends Fragment {
                             .load(userModel.profileImageUrl)
                             .apply(new RequestOptions().circleCrop())
                             .into(customViewHolder.imageView);
-
-                    customViewHolder.textView_title.setText(userModel.userName);
-
+                    //customViewHolder.textView_title.setText(userModel.userName);
+                    customViewHolder.textView_title.setText(chatModels.get(position).title);
                 }
 
                 @Override

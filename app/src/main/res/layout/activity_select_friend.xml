@@ -10,6 +10,12 @@
         android:id="@+id/selectFriendActivity_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="500dp"/>
+    <EditText
+        android:id="@+id/groupMessageActivity_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="방이름을 입력하세요."
+        />
     <Button
         android:id="@+id/selectFriendActivity_button"
         android:text="채팅방 만들기"
