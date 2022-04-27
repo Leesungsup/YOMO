@@ -26,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,15 +43,14 @@ public class SelectFriendActivity extends AppCompatActivity {
         recyclerView.setAdapter(new SelectFriendRecyclerViewAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = (Button) findViewById(R.id.selectFriendActivity_button);
+        EditText title = (EditText) findViewById(R.id.groupMessageActivity_title);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 chatModel.users.put(myUid,true);
-
+                chatModel.title=title.getText().toString();
                 FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel);
-
-
             }
         });
     }
