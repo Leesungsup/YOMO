@@ -45,7 +45,19 @@ public class PeopleFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.peoplefragment_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
         recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
-
+/**
+ * main_Filter
+ */
+        FloatingActionButton floatingActionButtonFilter = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton_filter);
+        floatingActionButtonFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(),SelectFilterActivity.class));
+            }
+        });
+/**
+ * create chat room
+ */
         FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,6 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_group_message.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_login.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_main.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_main2.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_message2.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_select_filter.xml" value="0.17037037037037037" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_select_friend.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_signup.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/activity_splash.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/dialog_comment.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_account.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_account2.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_chat.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_people.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_chat.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_friend.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_friend_select.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_message.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/menu/bottom_navigation_main.xml" value="0.3619791666666667" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/drawable/baseline_account_circle_24.xml" value="0.1953125" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/drawable/baseline_add_to_photos_24.xml" value="0.1" />
@@ -24,11 +43,9 @@
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_chat.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_friend.xml" value="0.14719202898550723" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_friend_select.xml" value="0.17916666666666667" />
-        <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_message.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_message.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/menu/bottom_navigation_main.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/xml/defalut_config.xml" value="0.1" />
-        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMO/app/src/main/res/layout/activity_login.xml" value="0.2875905797101449" />
-        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMO/app/src/main/res/layout/activity_main.xml" value="0.2875905797101449" />
       </map>
     </option>
   </component>
