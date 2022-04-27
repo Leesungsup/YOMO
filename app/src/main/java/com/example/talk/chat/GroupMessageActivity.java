@@ -72,6 +72,7 @@ public class GroupMessageActivity extends AppCompatActivity {
         FirebaseDatabase.getInstance().getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                users = (Map<String, UserModel>) dataSnapshot.getValue();
                 for(DataSnapshot item : dataSnapshot.getChildren()){
                     users.put(item.getKey(),item.getValue(UserModel.class));
                 }
@@ -169,8 +170,10 @@ public class GroupMessageActivity extends AppCompatActivity {
                         readUsersMap.put(key, comment_motify);
                         comments.add(comment_origin);
                     }
+                    notifyDataSetChanged();
 
-                    if (!comments.get(comments.size() - 1).readUsers.containsKey(uid)) {
+                    recyclerView.scrollToPosition(comments.size() - 1);
+                    /*if (!comments.get(comments.size() - 1).readUsers.containsKey(uid)) {
 
 
                         FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("comments").updateChildren(readUsersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -183,7 +186,7 @@ public class GroupMessageActivity extends AppCompatActivity {
                     } else {
                         notifyDataSetChanged();
                         recyclerView.scrollToPosition(comments.size() - 1);
-                    }
+                    }*/
                     //메세지가 갱신
 
 
@@ -214,7 +217,7 @@ public class GroupMessageActivity extends AppCompatActivity {
             //내가보낸 메세지
             if (comments.get(position).uid.equals(uid)) {
                 messageViewHolder.textView_message.setText(comments.get(position).message);
-                messageViewHolder.textView_message.setBackgroundResource(R.drawable.rightbubble_9);
+                messageViewHolder.textView_message.setBackgroundResource(R.drawable.rightbubble);
                 messageViewHolder.linearLayout_destination.setVisibility(View.INVISIBLE);
                 messageViewHolder.textView_message.setTextSize(25);
                 messageViewHolder.linearLayout_main.setGravity(Gravity.RIGHT);
@@ -230,7 +233,7 @@ public class GroupMessageActivity extends AppCompatActivity {
                         .into(messageViewHolder.imageView_profile);
                 messageViewHolder.textview_name.setText(users.get(comments.get(position).uid).userName);
                 messageViewHolder.linearLayout_destination.setVisibility(View.VISIBLE);
-                messageViewHolder.textView_message.setBackgroundResource(R.drawable.leftbubble_9);
+                messageViewHolder.textView_message.setBackgroundResource(R.drawable.leftbubble);
                 messageViewHolder.textView_message.setText(comments.get(position).message);
                 messageViewHolder.textView_message.setTextSize(25);
                 messageViewHolder.linearLayout_main.setGravity(Gravity.LEFT);
