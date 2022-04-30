@@ -8,6 +8,7 @@ import android.view.MenuItem;
 //import android.support.v4.app.FragmentTransaction;
 import com.example.talk.fragment.AccountFragment;
 import com.example.talk.fragment.ChatFragment;
+import com.example.talk.fragment.ChatFragment2;
 import com.example.talk.fragment.PeopleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,7 +31,8 @@ public class MainActivity2 extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_people:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new PeopleFragment()).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment2()).commit();
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new PeopleFragment()).commit();
                         return true;
                     case R.id.action_chat:
                         getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
