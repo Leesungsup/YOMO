@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,6 +106,28 @@ public class GroupMessageActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
 
                         editText.setText("");
+                        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                Map<String, Object> usersMap = new HashMap<>();
+                                for(DataSnapshot item : dataSnapshot.getChildren()){
+                                    //usersMap.put(item.getKey(),item.getValue(UserModel.class));
+                                    usersMap.put(item.getKey(),true);
+                                }
+                                usersMap.put(uid, true);
+                                FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
                     }
                 });
 
@@ -173,6 +196,7 @@ public class GroupMessageActivity extends AppCompatActivity {
                     notifyDataSetChanged();
 
                     recyclerView.scrollToPosition(comments.size() - 1);
+
                     /*if (!comments.get(comments.size() - 1).readUsers.containsKey(uid)) {
 
 
