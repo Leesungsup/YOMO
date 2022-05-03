@@ -51,6 +51,7 @@ public class SelectFriendActivity extends AppCompatActivity {
                 chatModel.users.put(myUid,true);
                 chatModel.title=title.getText().toString();
                 FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel);
+                startActivity(new Intent(view.getContext(), ChatFragment2.class));
             }
         });
     }

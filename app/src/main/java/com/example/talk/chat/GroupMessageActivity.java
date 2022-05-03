@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.talk.R;
+import com.example.talk.fragment.ChatFragment;
+import com.example.talk.fragment.SelectFriendActivity;
 import com.example.talk.model.ChatModel;
 import com.example.talk.model.NotificationModel;
 import com.example.talk.model.UserModel;
@@ -92,6 +95,7 @@ public class GroupMessageActivity extends AppCompatActivity {
 
     }
     void init(){
+        Button button1 = (Button) findViewById(R.id.groupMessageActivity_exit_button);
         Button button = (Button) findViewById(R.id.groupMessageActivity_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +135,35 @@ public class GroupMessageActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
+            Map<String, Object> usersMap = new HashMap<>();
+            @Override
+            public void onClick(View v) {
+                /*FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot item : dataSnapshot.getChildren()){
+                            if(item.getKey()!=uid) {
+                                usersMap.put(item.getKey(), true);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+                FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").push().setValue(usersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                    }
+                });*/
+                startActivity(new Intent(v.getContext(), ChatFragment.class));
             }
         });
 
