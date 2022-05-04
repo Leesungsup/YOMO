@@ -141,15 +141,21 @@ public class GroupMessageActivity extends AppCompatActivity {
             Map<String, Object> usersMap = new HashMap<>();
             @Override
             public void onClick(View v) {
-                /*FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         for(DataSnapshot item : dataSnapshot.getChildren()){
-                            if(item.getKey()!=uid) {
-                                usersMap.put(item.getKey(), true);
+                            if(item.getKey().equals(uid)){
+                                Log.e("3333333333333","item"+item.getKey());
+                                continue;
                             }
+                            usersMap.put(item.getKey(),true);
+                            Log.e("3333333333333","sdafga"+usersMap);
                         }
+                        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+                        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap);
+                        startActivity(new Intent(v.getContext(), ChatFragment.class));
                     }
 
                     @Override
@@ -157,13 +163,10 @@ public class GroupMessageActivity extends AppCompatActivity {
 
                     }
                 });
-                FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
-                FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").push().setValue(usersMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                    }
-                });*/
-                startActivity(new Intent(v.getContext(), ChatFragment.class));
+                //FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+                Log.e("3333333333333","sdafga"+usersMap);
+
+                //startActivity(new Intent(v.getContext(), ChatFragment.class));
             }
         });
 
