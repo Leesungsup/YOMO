@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.talk.R;
 import com.example.talk.fragment.ChatFragment;
+import com.example.talk.fragment.ChatFragment2;
 import com.example.talk.fragment.SelectFriendActivity;
 import com.example.talk.model.ChatModel;
 import com.example.talk.model.NotificationModel;
@@ -64,6 +65,7 @@ public class GroupMessageActivity extends AppCompatActivity {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
     private RecyclerView recyclerView;
     int peopleCounter=0;
+    final String[] hostname = new String[1];
     List<ChatModel.Comment> comments = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +94,21 @@ public class GroupMessageActivity extends AppCompatActivity {
 
             }
         });
+        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("host").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                hostname[0] =value;
+                Log.e("333333333333333","host3"+value);
 
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
     void init(){
         Button button1 = (Button) findViewById(R.id.groupMessageActivity_exit_button);
@@ -139,39 +155,44 @@ public class GroupMessageActivity extends AppCompatActivity {
         });
         button1.setOnClickListener(new View.OnClickListener() {
             Map<String, Object> usersMap = new HashMap<>();
+
             @Override
             public void onClick(View v) {
-                FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                if (uid.equals(hostname[0])) {
+                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).removeValue();
+                    startActivity(new Intent(v.getContext(), ChatFragment2.class));
+                } else {
+                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        for(DataSnapshot item : dataSnapshot.getChildren()){
-                            if(item.getKey().equals(uid)){
-                                Log.e("3333333333333","item"+item.getKey());
-                                continue;
+                            for (DataSnapshot item : dataSnapshot.getChildren()) {
+                                if (item.getKey().equals(uid)) {
+                                    Log.e("3333333333333", "item" + item.getKey());
+                                    continue;
+                                }
+                                usersMap.put(item.getKey(), true);
+                                Log.e("3333333333333", "sdafga" + usersMap);
                             }
-                            usersMap.put(item.getKey(),true);
-                            Log.e("3333333333333","sdafga"+usersMap);
+                            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+                            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap);
+                            startActivity(new Intent(v.getContext(), ChatFragment.class));
                         }
-                        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
-                        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap);
-                        startActivity(new Intent(v.getContext(), ChatFragment.class));
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
-                //FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
-                Log.e("3333333333333","sdafga"+usersMap);
+                        }
+                    });
+                    //FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+                    //startActivity(new Intent(v.getContext(), ChatFragment.class));
+                }
 
-                //startActivity(new Intent(v.getContext(), ChatFragment.class));
             }
         });
 
     }
-    void sendGcm(String pushToken) {
+    /*void sendGcm(String pushToken) {
 
         Gson gson = new Gson();
 
@@ -206,7 +227,7 @@ public class GroupMessageActivity extends AppCompatActivity {
         });
 
 
-    }
+    }*/
     class GroupMessageRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
         public GroupMessageRecyclerViewAdapter(){
