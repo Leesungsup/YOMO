@@ -12,7 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Talk"
         android:usesCleartextTraffic="true">
-        <activity
+        <activity android:name="com.example.talk.chat.GroupMessageActivity"/>
+        <activity android:name="com.example.talk.chat.MessageActivity"/>
+        <activity android:name="com.example.talk.MainActivity2"/>
+        <activity android:name="com.example.talk.SignupActivity"/>
+        <activity android:name="com.example.talk.SplashActivity"/>
+        <activity android:name="com.example.talk.LoginActivity"/>
+
+        <activity android:name="com.example.talk.fragment.SelectFriendActivity"/>
+        <!--<activity
             android:name=".chat.GroupMessageActivity"
             android:exported="true" />
         <activity
@@ -32,7 +40,7 @@
             android:exported="true" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" />
+            android:exported="true" />-->
         <activity
             android:name=".MainActivity"
             android:exported="true">

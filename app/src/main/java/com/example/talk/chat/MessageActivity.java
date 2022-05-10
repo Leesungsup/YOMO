@@ -96,7 +96,7 @@ public class MessageActivity extends AppCompatActivity {
                     comment.uid = uid;
                     comment.message = editText.getText().toString();
                     comment.timestamp= ServerValue.TIMESTAMP;
-                    Log.v("coqfgg","1111111111111111111111111111comment : "+chatRoomUid+" "+comment);
+                    //Log.v("coqfgg","1111111111111111111111111111comment : "+chatRoomUid+" "+comment);
                     FirebaseDatabase.getInstance().getReference().child("chatrooms").child(chatRoomUid).child("comments").push().setValue(comment).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -106,6 +106,7 @@ public class MessageActivity extends AppCompatActivity {
                             editText.setText("");
                         }
                     });
+
                 }
             }
         });

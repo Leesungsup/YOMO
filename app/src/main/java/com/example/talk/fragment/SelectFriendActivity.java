@@ -39,9 +39,9 @@ public class SelectFriendActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_friend);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.selectFriendActivity_recyclerview);
-        recyclerView.setAdapter(new SelectFriendRecyclerViewAdapter());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //RecyclerView recyclerView = (RecyclerView) findViewById(R.id.selectFriendActivity_recyclerview);
+        //recyclerView.setAdapter(new SelectFriendRecyclerViewAdapter());
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = (Button) findViewById(R.id.selectFriendActivity_button);
         EditText title = (EditText) findViewById(R.id.groupMessageActivity_title);
         button.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +49,13 @@ public class SelectFriendActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 chatModel.users.put(myUid,true);
+                chatModel.users.put("UaIbgqUdySeIEjZGZmkVPkI1mSf2",true);
                 chatModel.title=title.getText().toString();
                 chatModel.host=myUid;
                 FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel);
-                startActivity(new Intent(view.getContext(), ChatFragment2.class));
+                //startActivity(new Intent(view.getContext(), ChatFragment2.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment2()).commit();
+
             }
         });
     }

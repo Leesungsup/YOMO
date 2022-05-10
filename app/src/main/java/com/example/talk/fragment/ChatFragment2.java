@@ -112,24 +112,25 @@ public class ChatFragment2 extends Fragment {
                     destinationUsers.add(destinationUid);
                 }
             }
-            FirebaseDatabase.getInstance().getReference().child("users").child(destinationUid).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    UserModel userModel = dataSnapshot.getValue(UserModel.class);
-                    Glide.with(customViewHolder.itemView.getContext())
-                            .load(userModel.profileImageUrl)
-                            .apply(new RequestOptions().circleCrop())
-                            .into(customViewHolder.imageView);
-                    //customViewHolder.textView_title.setText(userModel.userName);
-                    customViewHolder.textView_title.setText(chatModels.get(position).title);
-                }
+            if(destinationUid!=null) {
+                FirebaseDatabase.getInstance().getReference().child("users").child(destinationUid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                        Glide.with(customViewHolder.itemView.getContext())
+                                .load(userModel.profileImageUrl)
+                                .apply(new RequestOptions().circleCrop())
+                                .into(customViewHolder.imageView);
+                        //customViewHolder.textView_title.setText(userModel.userName);
+                        customViewHolder.textView_title.setText(chatModels.get(position).title);
+                    }
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
-                }
-            });
-
+                    }
+                });
+            }
             //메시지를 내림 차순으로 정렬 후 마지막 메세지의 키값을 가져옴
             Map<String, ChatModel.Comment> commentMap = new TreeMap<>(Collections.reverseOrder());
             commentMap.putAll(chatModels.get(position).comments);
@@ -147,7 +148,7 @@ public class ChatFragment2 extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Intent intent = null;
-                    if (chatModels.get(position).users.size() > 2) {
+                    if (chatModels.get(position).users.size() >= 1) {
                         intent = new Intent(view.getContext(), GroupMessageActivity.class);
                         intent.putExtra("destinationRoom", keys.get(position));
                     } else {

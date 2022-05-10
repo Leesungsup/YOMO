@@ -99,9 +99,6 @@ public class GroupMessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
                 hostname[0] =value;
-                Log.e("333333333333333","host3"+value);
-
-
             }
 
             @Override
@@ -160,7 +157,9 @@ public class GroupMessageActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (uid.equals(hostname[0])) {
                     FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).removeValue();
-                    startActivity(new Intent(v.getContext(), ChatFragment2.class));
+                    //startActivity(new Intent(v.getContext(), ChatFragment2.class));
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment2()).commit();
+
                 } else {
                     FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -168,15 +167,15 @@ public class GroupMessageActivity extends AppCompatActivity {
 
                             for (DataSnapshot item : dataSnapshot.getChildren()) {
                                 if (item.getKey().equals(uid)) {
-                                    Log.e("3333333333333", "item" + item.getKey());
                                     continue;
                                 }
                                 usersMap.put(item.getKey(), true);
-                                Log.e("3333333333333", "sdafga" + usersMap);
                             }
                             FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
                             FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap);
-                            startActivity(new Intent(v.getContext(), ChatFragment.class));
+                            //startActivity(new Intent(v.getContext(), ChatFragment.class));
+                            getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
+
                         }
 
                         @Override
