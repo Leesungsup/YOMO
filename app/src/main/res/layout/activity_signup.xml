@@ -7,6 +7,13 @@
     tools:context=".SignupActivity"
     android:orientation="vertical"
     android:gravity="center">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:textColor="#EA8224"
+        android:textStyle="bold"
+        android:textSize="40sp"/>
     <ImageView
         android:src="@drawable/baseline_add_to_photos_24"
         android:id="@+id/signupActivity_imageview_profile"
@@ -14,35 +21,41 @@
         android:layout_height="100dp"
         android:layout_margin="50dp" />
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp">
         <EditText
             android:id="@+id/signupActivity_edittext_email"
-            android:hint="email"
+            android:hint="Email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FAA51A"
             android:layout_margin="5dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp">
         <EditText
             android:id="@+id/signupActivity_edittext_name"
-            android:hint="name"
+            android:hint="Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FAA51A"
             android:layout_margin="5dp"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="10dp">
         <EditText
             android:id="@+id/signupActivity_edittext_password"
-            android:hint="password"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:layout_width="match_parent"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
             android:background="#FAA51A"
             android:layout_margin="5dp"/>
@@ -51,5 +64,6 @@
         android:id="@+id/signupActivity_button_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="회원가입" />
+        android:text="Sign Up"
+        android:layout_marginTop="50dp"/>
 </LinearLayout>

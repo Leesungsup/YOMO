@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +22,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 public class LoginActivity extends AppCompatActivity {
     private Button signin;
-    private Button signup;
+    private TextView signup;
     private FirebaseRemoteConfig FirebaseRemoteConfig;
     private EditText id;
     private EditText password;
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor(loading_background));
         }
         signin=(Button)findViewById(R.id.loginActivity_button_signin);
-        signup=(Button)findViewById(R.id.loginActivity_button_signup);
+        signup=(TextView) findViewById(R.id.loginActivity_button_signup);
         signin.setBackgroundColor(Color.parseColor(loading_background));
         signup.setBackgroundColor(Color.parseColor(loading_background));
         signin.setOnClickListener(new View.OnClickListener() {
@@ -66,8 +67,10 @@ public class LoginActivity extends AppCompatActivity {
                 if(user != null){
                     //로그인
                     Intent intent = new Intent(LoginActivity.this,MainActivity2.class);
-                    startActivity(intent);
-                    finish();
+                    if(intent!=null) {
+                        startActivity(intent);
+                        finish();
+                    }
                 }else{
                     //로그아웃
                 }
