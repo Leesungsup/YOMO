@@ -2,14 +2,20 @@ package com.example.talk.chat;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,6 +35,7 @@ import com.example.talk.model.NotificationModel;
 import com.example.talk.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -55,11 +62,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class GroupMessageActivity extends AppCompatActivity {
+public class GroupMessageActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     Map<String, UserModel> users = new HashMap<>();
     String destinationRoom;
     String uid;
     EditText editText;
+    Toolbar myToolbar;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
@@ -74,7 +82,12 @@ public class GroupMessageActivity extends AppCompatActivity {
         destinationRoom=getIntent().getStringExtra("destinationRoom");
         uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         editText=(EditText)findViewById(R.id.groupMessageActivity_editText);
+        DrawerLayout drawer = findViewById(R.id.chat_drawer);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        myToolbar = findViewById(R.id.chat_toolbar);
+        setSupportActionBar(myToolbar);
 
+        navigationView.setNavigationItemSelectedListener(this);
         FirebaseDatabase.getInstance().getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -107,8 +120,11 @@ public class GroupMessageActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     void init(){
-        Button button1 = (Button) findViewById(R.id.groupMessageActivity_exit_button);
+        //Button button1 = (Button) findViewById(R.id.groupMessageActivity_exit_button);
         Button button = (Button) findViewById(R.id.groupMessageActivity_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +166,7 @@ public class GroupMessageActivity extends AppCompatActivity {
 
             }
         });
-        button1.setOnClickListener(new View.OnClickListener() {
+        /*button1.setOnClickListener(new View.OnClickListener() {
             Map<String, Object> usersMap = new HashMap<>();
 
             @Override
@@ -188,7 +204,7 @@ public class GroupMessageActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
 
     }
     /*void sendGcm(String pushToken) {
@@ -385,6 +401,85 @@ public class GroupMessageActivity extends AppCompatActivity {
                 textView_readCounter_right=(TextView) view.findViewById(R.id.messageItem_textview_readCounter_right);
 
             }
+        }
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_chat_toolbar,menu);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId())
+        {
+
+            case R.id.toolbar_menu:
+                DrawerLayout drawer = findViewById(R.id.chat_drawer);
+                drawer.openDrawer(GravityCompat.END);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onNavigationItemSelected(MenuItem item){
+        int id = item.getItemId();
+        switch (id){
+            case R.id.drawer_members:
+
+                break;
+
+            case R.id.drawer_finaltest:
+
+                break;
+
+            case R.id.drawer_exit:
+                exitproject();
+                break;
+        }
+
+        DrawerLayout drawer = findViewById(R.id.chat_drawer);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    private void exitproject(){
+        Map<String, Object> usersMap = new HashMap<>();
+        if (uid.equals(hostname[0])) {
+            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).removeValue();
+            //startActivity(new Intent(v.getContext(), ChatFragment2.class));
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment2()).commit();
+
+        } else {
+            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot item : dataSnapshot.getChildren()) {
+                        if (item.getKey().equals(uid)) {
+                            continue;
+                        }
+                        usersMap.put(item.getKey(), true);
+                    }
+                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap);
+                    //startActivity(new Intent(v.getContext(), ChatFragment.class));
+                    getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            //FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+            //startActivity(new Intent(v.getContext(), ChatFragment.class));
         }
     }
 }

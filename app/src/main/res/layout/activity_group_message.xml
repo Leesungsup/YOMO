@@ -1,10 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".chat.GroupMessageActivity">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/chat_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="right">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/chat_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:title="배달할것">
+
+
+
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="11"
+                android:background="#EAEAEA">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/groupMessageActivity_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="683dp"
+                    android:layout_above="@+id/groupMessageActivity_button"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/groupMessageActivity_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@+id/groupMessageActivity_button"
+                    android:layout_toStartOf="@+id/groupMessageActivity_button" />
+
+                <Button
+                    android:id="@+id/groupMessageActivity_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="보내기" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/menu_drawer"
+            app:itemTextColor="@color/black"
+            app:itemIconTint="@color/black"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
     <Button
         android:id="@+id/groupMessageActivity_exit_button"
         android:layout_width="wrap_content"
@@ -14,30 +95,5 @@
         android:layout_alignParentRight="true"
         android:text="채팅방 나가기"
         />
-    <EditText
-        android:id="@+id/groupMessageActivity_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/groupMessageActivity_button"
-        android:layout_toStartOf="@+id/groupMessageActivity_button" />
 
-    <Button
-        android:id="@+id/groupMessageActivity_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="보내기" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/groupMessageActivity_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="683dp"
-        android:layout_above="@+id/groupMessageActivity_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-</RelativeLayout>
+</LinearLayout>
