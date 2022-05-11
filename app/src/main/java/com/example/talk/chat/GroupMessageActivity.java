@@ -1,6 +1,7 @@
 package com.example.talk.chat;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -37,6 +38,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -75,6 +77,7 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
     int peopleCounter=0;
     final String[] hostname = new String[1];
     List<ChatModel.Comment> comments = new ArrayList<>();
+    Map<String, Object> updateusersMap = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +119,23 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    if (item.getKey().equals(uid)) {
+                        continue;
+                    }
+                    updateusersMap.put(item.getKey(), true);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
@@ -440,7 +460,7 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
 
             case R.id.drawer_exit:
                 exitproject();
-                break;
+                //break;
         }
 
         DrawerLayout drawer = findViewById(R.id.chat_drawer);
@@ -449,35 +469,17 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
     }
 
     private void exitproject(){
-        Map<String, Object> usersMap = new HashMap<>();
+
         if (uid.equals(hostname[0])) {
             FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).removeValue();
             //startActivity(new Intent(v.getContext(), ChatFragment2.class));
             getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment2()).commit();
-
         } else {
-            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
+            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(updateusersMap);
+            //startActivity(new Intent(v.getContext(), ChatFragment.class));
+            getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
 
-                    for (DataSnapshot item : dataSnapshot.getChildren()) {
-                        if (item.getKey().equals(uid)) {
-                            continue;
-                        }
-                        usersMap.put(item.getKey(), true);
-                    }
-                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
-                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap);
-                    //startActivity(new Intent(v.getContext(), ChatFragment.class));
-                    getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
             //FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
             //startActivity(new Intent(v.getContext(), ChatFragment.class));
         }
