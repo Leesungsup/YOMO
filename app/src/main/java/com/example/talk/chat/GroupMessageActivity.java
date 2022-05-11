@@ -124,7 +124,6 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
 
 
     void init(){
-        //Button button1 = (Button) findViewById(R.id.groupMessageActivity_exit_button);
         Button button = (Button) findViewById(R.id.groupMessageActivity_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,45 +165,6 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
 
             }
         });
-        /*button1.setOnClickListener(new View.OnClickListener() {
-            Map<String, Object> usersMap = new HashMap<>();
-
-            @Override
-            public void onClick(View v) {
-                if (uid.equals(hostname[0])) {
-                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).removeValue();
-                    //startActivity(new Intent(v.getContext(), ChatFragment2.class));
-                    getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment2()).commit();
-
-                } else {
-                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                            for (DataSnapshot item : dataSnapshot.getChildren()) {
-                                if (item.getKey().equals(uid)) {
-                                    continue;
-                                }
-                                usersMap.put(item.getKey(), true);
-                            }
-                            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
-                            FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").updateChildren(usersMap);
-                            //startActivity(new Intent(v.getContext(), ChatFragment.class));
-                            getSupportFragmentManager().beginTransaction().replace(R.id.mainactivity_framelayout,new ChatFragment()).commit();
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                    //FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").removeValue();
-                    //startActivity(new Intent(v.getContext(), ChatFragment.class));
-                }
-
-            }
-        });*/
 
     }
     /*void sendGcm(String pushToken) {
@@ -309,7 +269,6 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             GroupMessageViewHodler messageViewHolder = ((GroupMessageViewHodler) holder);
 
-
             //내가보낸 메세지
             if (comments.get(position).uid.equals(uid)) {
                 messageViewHolder.textView_message.setText(comments.get(position).message);
@@ -344,6 +303,7 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
             messageViewHolder.textView_timestamp.setText(time);
         }
         void setReadCounter(final int position, final TextView textView){
+
             if(peopleCounter==0) {
                 FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

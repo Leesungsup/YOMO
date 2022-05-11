@@ -52,7 +52,10 @@
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_message.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/menu/bottom_navigation_main.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/xml/defalut_config.xml" value="0.1" />
+        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/color_change.xml" value="0.21666666666666667" />
+        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_announcement_black.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_done.xml" value="0.2851851851851852" />
+        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_error_outline_black.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_exit.xml" value="0.2851851851851852" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_menu_black.xml" value="0.2851851851851852" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_person_black.xml" value="0.2851851851851852" />
@@ -72,6 +75,7 @@
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_chat2.xml" value="0.19157608695652173" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_people.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_chat.xml" value="0.19157608695652173" />
+        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_friend.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_friend_select.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_message.xml" value="0.19157608695652173" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/menu/bottom_navigation_main.xml" value="0.35989583333333336" />

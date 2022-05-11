@@ -23,10 +23,6 @@
                 android:layout_height="?android:attr/actionBarSize"
                 app:title="배달할것">
 
-
-
-
-
             </androidx.appcompat.widget.Toolbar>
 
             <View
