@@ -20,6 +20,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:background="@color/main_color"
         android:src="@drawable/baseline_filter_list_black_24dp"
         app:fabSize="normal" />
 
@@ -33,6 +34,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
+        android:background="@color/main_color"
         android:src="@android:drawable/stat_notify_chat"
         app:fabSize="normal" />
 </RelativeLayout>

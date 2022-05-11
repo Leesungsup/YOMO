@@ -18,7 +18,9 @@
         />
     <Button
         android:id="@+id/selectFriendActivity_button"
+        android:background="@color/main_color"
         android:text="채팅방 만들기"
+        android:layout_gravity="right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>
