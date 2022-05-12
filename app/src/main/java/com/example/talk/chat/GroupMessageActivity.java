@@ -78,6 +78,7 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
     final String[] hostname = new String[1];
     List<ChatModel.Comment> comments = new ArrayList<>();
     Map<String, Object> updateusersMap = new HashMap<>();
+    String chatTitle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,11 +111,16 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
 
             }
         });
-        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("host").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String value = dataSnapshot.getValue(String.class);
-                hostname[0] =value;
+                ChatModel chatModel = dataSnapshot.getValue(ChatModel.class);
+                //String value = dataSnapshot.getValue(String.class);
+                hostname[0] =chatModel.host;
+                chatTitle=chatModel.title;
+                //Log.e("333333","title"+chatModel.title);
+                Log.e("333333","title"+chatTitle);
+                getSupportActionBar().setTitle(chatTitle);
             }
 
             @Override
@@ -389,6 +395,7 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
+
         inflater.inflate(R.menu.menu_chat_toolbar,menu);
 
         return true;
@@ -397,7 +404,6 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
     public boolean onOptionsItemSelected(MenuItem item){
         switch(item.getItemId())
         {
-
             case R.id.toolbar_menu:
                 DrawerLayout drawer = findViewById(R.id.chat_drawer);
                 drawer.openDrawer(GravityCompat.END);
