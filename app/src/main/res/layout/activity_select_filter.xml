@@ -4,22 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:text="Filter"
-        android:textSize="40dp"/>
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:text="Filter"-->
+<!--        android:textSize="40dp"/>-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/selectFilterActivity_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/selectFilterActivity_recyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="500dp"/>-->
 
-<!--    선택 후 확인 버튼-->
-    <Button
-        android:id="@+id/assign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="done"/>
+<!--&lt;!&ndash;    선택 후 확인 버튼&ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/assign"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="done"/>-->
 
 </LinearLayout>
