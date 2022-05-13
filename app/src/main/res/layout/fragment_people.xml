@@ -50,6 +50,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="야식"/>
+            <Button
+                android:id="@+id/안주"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="안주"/>
 
         </LinearLayout>
     </HorizontalScrollView>
