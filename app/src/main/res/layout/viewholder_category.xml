@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="75dp"
+    android:layout_height="80dp"
+    android:layout_margin="8dp"
+    android:background="@drawable/background_category"
+    android:elevation="3dp">
+
+    <ImageView
+        android:id="@+id/categoryPic"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213"
+        app:srcCompat="@drawable/cat_1" />
+
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textColor="#6e6e70"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/categoryPic"
+        app:layout_constraintStart_toStartOf="@+id/categoryPic"
+        app:layout_constraintTop_toBottomOf="@+id/categoryPic" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,11 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.talk.CategoryAdapter;
+import com.example.talk.CategoryDomain;
 import com.example.talk.R;
 import com.example.talk.chat.GroupMessageActivity;
 import com.example.talk.chat.MessageActivity;
@@ -42,6 +46,8 @@ import java.util.TreeMap;
 
 public class ChatFragment2 extends Fragment {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
+    private RecyclerView recyclerViewCategotyList;
+    private CategoryAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +56,30 @@ public class ChatFragment2 extends Fragment {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.chatfragment_recyclerview2);
         recyclerView.setAdapter(new ChatFragment2.ChatRecyclerViewAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+
+        //상단 카테고리 구현
+        recyclerViewCategotyList = view.findViewById(R.id.view1);
+        ArrayList<CategoryDomain> categoryList = new ArrayList<>();
+        categoryList.add(new CategoryDomain("피자", "cat_1"));
+        categoryList.add(new CategoryDomain("양식", "cat_2"));
+        categoryList.add(new CategoryDomain("치킨", "cat_3"));
+        categoryList.add(new CategoryDomain("한식", "cat_4"));
+        categoryList.add(new CategoryDomain("카페", "cat_5"));
+
+        adapter = new CategoryAdapter(categoryList);
+        recyclerViewCategotyList.setAdapter(adapter);
+        //리사이클러뷰 클릭이벤트
+        adapter.setOnItemClickListener(new CategoryAdapter.OnItemClickEventListener() {
+            @Override
+            public void OnItemClick(View a_view, int a_position) {
+                //item들이 클릭되었을때 기능 구현
+                final CategoryDomain item = categoryList.get(a_position);
+                Toast.makeText(a_view.getContext(), item.getTitle()+"Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +91,24 @@ public class ChatFragment2 extends Fragment {
         return view;
     }
 
+
+
+    /*private void recyclerViewCategory() {
+        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewCategotyList = getView().findViewById(R.id.view1);
+        //recyclerViewCategotyList.setLayoutManager(linearLayoutManager);
+
+        ArrayList<CategoryDomain> categoryList = new ArrayList<>();
+        categoryList.add(new CategoryDomain("피자", "cat_1"));
+        categoryList.add(new CategoryDomain("양식", "cat_2"));
+        categoryList.add(new CategoryDomain("치킨", "cat_3"));
+        categoryList.add(new CategoryDomain("한식", "cat_4"));
+        categoryList.add(new CategoryDomain("카페", "cat_5"));
+
+        adapter = new CategoryAdapter(categoryList);
+        recyclerViewCategotyList.setAdapter(adapter);
+
+    }*/
 
     class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -191,5 +239,7 @@ public class ChatFragment2 extends Fragment {
                 textView_timestamp = (TextView) view.findViewById(R.id.chatitem_textview_timestamp);
             }
         }
+
+
     }
 }
