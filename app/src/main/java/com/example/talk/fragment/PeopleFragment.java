@@ -42,9 +42,9 @@ public class PeopleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_people, container, false);
-        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.peoplefragment_recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
-        recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
+        //RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.peoplefragment_recyclerview);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+        //recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
 /**
  * main_Filter
  */
