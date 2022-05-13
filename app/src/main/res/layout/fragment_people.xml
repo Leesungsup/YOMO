@@ -5,6 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/치킨"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="치킨"/>
+            <Button
+                android:id="@+id/피자"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="피자"/>
+            <Button
+                android:id="@+id/한식"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="한식"/>
+
+            <Button
+                android:id="@+id/일식"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일식" />
+
+            <Button
+                android:id="@+id/중식"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중식" />
+
+            <Button
+                android:id="@+id/양식"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="양식"/>
+            <Button
+                android:id="@+id/야식"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="야식"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/peoplefragment_recyclerview"
         android:layout_width="match_parent"
