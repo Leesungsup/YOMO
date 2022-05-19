@@ -16,12 +16,15 @@
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_account.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_account2.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_chat.xml" value="0.3619791666666667" />
-        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_people.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_chat2.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_chat3.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/fragment_people.xml" value="0.3286852589641434" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_chat.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_filter_selected.xml" value="0.33" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_friend.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_friend_select.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/item_message.xml" value="0.3619791666666667" />
+        <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/layout/viewholder_category.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/menu/bottom_navigation_main.xml" value="0.3619791666666667" />
         <entry key="..\:/AndroidWorkSheet/YOMO-master_Ahn/app/src/main/res/menu/filter_menu.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
@@ -43,6 +46,7 @@
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/fragment_account.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/fragment_account2.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/fragment_chat.xml" value="0.1" />
+        <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/fragment_chat2.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/fragment_people.xml" value="0.14719202898550723" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_chat.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_friend.xml" value="0.14719202898550723" />
@@ -50,7 +54,6 @@
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/layout/item_message.xml" value="0.1" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/menu/bottom_navigation_main.xml" value="0.17916666666666667" />
         <entry key="..\:/Users/tmdtj/AndroidStudioProjects/Talk/app/src/main/res/xml/defalut_config.xml" value="0.1" />
-        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/background_category.xml" value="0.37025641025641026" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/color_change.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_announcement_black.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/drawable/ic_done.xml" value="0.2851851851851852" />
@@ -71,14 +74,12 @@
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_account.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_account2.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_chat.xml" value="0.19157608695652173" />
-        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_chat2.xml" value="0.33" />
+        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_chat2.xml" value="0.19157608695652173" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/fragment_people.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_chat.xml" value="0.19157608695652173" />
-        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_filter_selected.xml" value="0.3138586956521739" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_friend.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_friend_select.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/item_message.xml" value="0.19157608695652173" />
-        <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/layout/viewholder_category.xml" value="0.3233695652173913" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/menu/bottom_navigation_main.xml" value="0.35989583333333336" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/menu/menu_chat_toolbar.xml" value="0.25462962962962965" />
         <entry key="..\:/Users/wkddn/AndroidStudioProjects/YOMOreal/app/src/main/res/menu/menu_drawer.xml" value="0.33541666666666664" />

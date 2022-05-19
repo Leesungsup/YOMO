@@ -118,6 +118,7 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
                 //String value = dataSnapshot.getValue(String.class);
                 hostname[0] =chatModel.host;
                 chatTitle=chatModel.title;
+////////////////menu=chatModel.menu;
                 //Log.e("333333","title"+chatModel.title);
                 Log.e("333333","title"+chatTitle);
                 getSupportActionBar().setTitle(chatTitle);

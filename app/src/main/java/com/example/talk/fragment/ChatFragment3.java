@@ -4,22 +4,18 @@ import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -46,57 +42,48 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.TreeMap;
 
-
-public class ChatFragment2 extends Fragment {
+public class ChatFragment3 extends Fragment {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
     private RecyclerView recyclerViewCategotyList;
     private CategoryAdapter adapter;
 
-    String menu="defaults";
-    String selectedMenu=null;
-    String destinationRoom;
+    String selectedMenu;
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat2, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.chatfragment_recyclerview2);
-        recyclerView.setAdapter(new ChatFragment2.ChatRecyclerViewAdapter());
+        recyclerView.setAdapter(new ChatFragment3.ChatRecyclerViewAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+
+        //selectedMenu 받아오기
+        Bundle bundle = getArguments();
+        selectedMenu = bundle.getString("selectedMenu");
 
         //상단 카테고리 구현
         recyclerViewCategotyList = view.findViewById(R.id.view1);
         ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        categoryList.add(new CategoryDomain("피자", "cat_1"));
-        categoryList.add(new CategoryDomain("양식", "cat_2"));
-        categoryList.add(new CategoryDomain("치킨", "cat_3"));
-        categoryList.add(new CategoryDomain("한식", "cat_4"));
-        categoryList.add(new CategoryDomain("카페", "cat_5"));
+        switch (selectedMenu) {
+            case "피자":
+            categoryList.add(new CategoryDomain("피자", "cat_1"));
+            break;
+            case "양식":
+            categoryList.add(new CategoryDomain("양식", "cat_2"));
+            break;
+            case "치킨":
+            categoryList.add(new CategoryDomain("치킨", "cat_3"));
+            break;
+            case "한식":
+            categoryList.add(new CategoryDomain("한식", "cat_4"));
+            break;
+            case "카페":
+            categoryList.add(new CategoryDomain("카페", "cat_5"));
+            break;
+        }
 
         adapter = new CategoryAdapter(categoryList);
         recyclerViewCategotyList.setAdapter(adapter);
-        //리사이클러뷰 클릭이벤트
-        adapter.setOnItemClickListener(new CategoryAdapter.OnItemClickEventListener() {
-            @Override
-            public void OnItemClick(View a_view, int a_position) {
-                //item들이 클릭되었을때 기능 구현
-                final CategoryDomain item = categoryList.get(a_position);
-                selectedMenu = item.getTitle();
-                Toast.makeText(a_view.getContext(), selectedMenu+"Clicked", Toast.LENGTH_SHORT).show();
-
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                ChatFragment3 fragment3 = new ChatFragment3();
-                Bundle bundle = new Bundle();
-                bundle.putString("selectedMenu",selectedMenu);
-                fragment3.setArguments(bundle);
-                transaction.replace(R.id.mainactivity_framelayout, fragment3);
-                transaction.commit();
-
-
-            }
-        });
-
-
-
 
         FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -108,26 +95,7 @@ public class ChatFragment2 extends Fragment {
         return view;
     }
 
-
-
-    /*private void recyclerViewCategory() {
-        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewCategotyList = getView().findViewById(R.id.view1);
-        //recyclerViewCategotyList.setLayoutManager(linearLayoutManager);
-
-        ArrayList<CategoryDomain> categoryList = new ArrayList<>();
-        categoryList.add(new CategoryDomain("피자", "cat_1"));
-        categoryList.add(new CategoryDomain("양식", "cat_2"));
-        categoryList.add(new CategoryDomain("치킨", "cat_3"));
-        categoryList.add(new CategoryDomain("한식", "cat_4"));
-        categoryList.add(new CategoryDomain("카페", "cat_5"));
-
-        adapter = new CategoryAdapter(categoryList);
-        recyclerViewCategotyList.setAdapter(adapter);
-    }*/
-
-    class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
+    private class ChatRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private List<ChatModel> chatModels = new ArrayList<>();
         private List<String> keys = new ArrayList<>();
         private String uid;
@@ -136,7 +104,7 @@ public class ChatFragment2 extends Fragment {
         public ChatRecyclerViewAdapter() {
             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/" + uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("menu").equalTo(selectedMenu).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     chatModels.clear();
@@ -145,7 +113,8 @@ public class ChatFragment2 extends Fragment {
                         chatModels.add(item.getValue(ChatModel.class));
                         keys.add(item.getKey());
 
-                    notifyDataSetChanged();}
+                        notifyDataSetChanged();}
+                    Log.d("MainActivity", "343434234234 getData: " + chatModels.toString());
                 }
 
                 @Override
@@ -153,27 +122,6 @@ public class ChatFragment2 extends Fragment {
 
                 }
             });
-
-
-//            //Firebase after filter                  //여기 수정!!!! chatrooms -> menu ?    menu -> selectedMenu
-//            FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild(menu).equalTo(true).addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    chatModels.clear();
-//                    for (DataSnapshot item :dataSnapshot.getChildren()){
-//                        chatModels.add(item.getValue(ChatModel.class));
-//                        keys.add(item.getKey());
-//                    }
-//                    notifyDataSetChanged();
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                }
-//            });
-
-
         }
 
         @Override
@@ -181,12 +129,12 @@ public class ChatFragment2 extends Fragment {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
 
 
-            return new ChatFragment2.ChatRecyclerViewAdapter.CustomViewHolder(view);
+            return new ChatFragment3.ChatRecyclerViewAdapter.CustomViewHolder(view);
         }
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-            final ChatFragment2.ChatRecyclerViewAdapter.CustomViewHolder customViewHolder = (ChatFragment2.ChatRecyclerViewAdapter.CustomViewHolder) holder;
+            final ChatFragment3.ChatRecyclerViewAdapter.CustomViewHolder customViewHolder = (ChatFragment3.ChatRecyclerViewAdapter.CustomViewHolder) holder;
             String destinationUid = null;
 
             // 일일 챗방에 있는 유저를 체크
@@ -245,13 +193,6 @@ public class ChatFragment2 extends Fragment {
                         activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright, R.anim.toleft);
                         startActivity(intent, activityOptions.toBundle());
                     }
-
-                    /*ActivityOptions activityOptions = null;
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                        activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright,R.anim.toleft);
-                        startActivity(intent,activityOptions.toBundle());
-                    }*/
-
                 }
             });
         }
@@ -275,7 +216,5 @@ public class ChatFragment2 extends Fragment {
                 textView_timestamp = (TextView) view.findViewById(R.id.chatitem_textview_timestamp);
             }
         }
-
-
     }
 }
