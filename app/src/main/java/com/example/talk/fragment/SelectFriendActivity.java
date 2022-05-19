@@ -28,6 +28,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -44,6 +46,31 @@ public class SelectFriendActivity extends AppCompatActivity {
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Button button = (Button) findViewById(R.id.selectFriendActivity_button);
         EditText title = (EditText) findViewById(R.id.groupMessageActivity_title);
+        RadioGroup colorType = findViewById(R.id.radio_menu);
+
+        //라디오버튼 체크시 이벤트
+        colorType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if(checkedId == R.id.radio_1)
+                {
+                    chatModel.menu="피자";
+                }else if(checkedId == R.id.radio_2)
+                {
+                    chatModel.menu="양식";
+                }else if(checkedId == R.id.radio_3)
+                {
+                    chatModel.menu="치킨";
+                }else if(checkedId == R.id.radio_4)
+                {
+                    chatModel.menu="한식";
+                }else if(checkedId == R.id.radio_5)
+                {
+                    chatModel.menu="카페";
+                }
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
