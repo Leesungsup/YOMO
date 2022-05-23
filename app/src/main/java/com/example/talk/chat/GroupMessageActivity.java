@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.talk.R;
 import com.example.talk.fragment.ChatFragment;
 import com.example.talk.fragment.ChatFragment2;
+import com.example.talk.fragment.PeopleActivity;
 import com.example.talk.fragment.SelectFriendActivity;
 import com.example.talk.model.ChatModel;
 import com.example.talk.model.NotificationModel;
@@ -118,7 +120,6 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
                 //String value = dataSnapshot.getValue(String.class);
                 hostname[0] =chatModel.host;
                 chatTitle=chatModel.title;
-////////////////menu=chatModel.menu;
                 //Log.e("333333","title"+chatModel.title);
                 Log.e("333333","title"+chatTitle);
                 getSupportActionBar().setTitle(chatTitle);
@@ -418,8 +419,11 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
         int id = item.getItemId();
         switch (id){
             case R.id.drawer_members:
-
-                break;
+                Intent intent=new Intent(GroupMessageActivity.this, PeopleActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.putExtra("destinationRoom", destinationRoom);
+                GroupMessageActivity.this.startActivity(intent);
+                //break;
 
             case R.id.drawer_finaltest:
 

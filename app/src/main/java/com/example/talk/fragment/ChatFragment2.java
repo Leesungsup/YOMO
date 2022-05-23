@@ -34,6 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
@@ -51,7 +52,7 @@ public class ChatFragment2 extends Fragment {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm");
     private RecyclerView recyclerViewCategotyList;
     private CategoryAdapter adapter;
-
+    private DatabaseReference mDatabase;
     String menu="defaults";
     String selectedMenu=null;
     String destinationRoom;
@@ -135,7 +136,8 @@ public class ChatFragment2 extends Fragment {
 
         public ChatRecyclerViewAdapter() {
             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+            //mDatabase=FirebaseDatabase.getInstance().getReference();
+            //Log.e("3333333","fasgagw"+mDatabase.child("chatrooms"));
             FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/" + uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

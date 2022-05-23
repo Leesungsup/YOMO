@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,37 +39,34 @@ import java.util.List;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class PeopleFragment extends Fragment {
 
+public class PeopleFragment extends Fragment {
+    String destinationRoom;
+    public List<String> keys = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_people, container, false);
-        //RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.peoplefragment_recyclerview);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
-        //recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
-///**
-// * main_Filter
-// */
-//        FloatingActionButton floatingActionButtonFilter = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton_filter);
-//        floatingActionButtonFilter.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(view.getContext(),SelectFilterActivity.class));
-//            }
-//        });
+        Bundle extra = this.getArguments();
+        if(extra != null) {
+            extra = getArguments();
+            destinationRoom = extra.getString("destinationRoom");
+            //keys=extra.getStringArrayList("dest");
+        }
 
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.peoplefragment_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+        recyclerView.setAdapter(new PeopleFragmentRecyclerViewAdapter());
 
-/**
- * create chat room
- */
-        FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
+        /*FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(),SelectFriendActivity.class));
             }
-        });
+        });*/
+
+
 
         return view;
     }
@@ -76,23 +74,43 @@ public class PeopleFragment extends Fragment {
     class PeopleFragmentRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         List<UserModel> userModels;
-
+        String str;
         public PeopleFragmentRecyclerViewAdapter() {
+
             userModels = new ArrayList<>();
             final String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             FirebaseDatabase.getInstance().getReference().child("users").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    userModels.clear();
-                    for(DataSnapshot snapshot :dataSnapshot.getChildren()){
-                        UserModel userModel = snapshot.getValue(UserModel.class);
+                    FirebaseDatabase.getInstance().getReference().child("chatrooms").child(destinationRoom).child("users").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshota) {
 
-                        if(userModel.uid.equals(myUid)){
-                            continue;
+                            for(DataSnapshot snapshot :dataSnapshota.getChildren()){
+                                Log.e("33333","kychild"+snapshot.getKey());
+                                keys.add(snapshot.getKey());
+                            }
+                            userModels.clear();
+                            for(DataSnapshot snapshot :dataSnapshot.getChildren()){
+                                Log.e("33333","child"+keys);
+                                UserModel userModel = snapshot.getValue(UserModel.class);
+                                Log.e("33333","usermodel"+userModel.uid);
+                                if(userModel.uid.equals(myUid)){
+                                    continue;
+                                }
+                                if(keys.contains(userModel.uid)) {
+                                    userModels.add(userModel);
+                                }
+                            }
+                            notifyDataSetChanged();
                         }
-                        userModels.add(userModel);
-                    }
-                    notifyDataSetChanged();
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
 
                 }
 
