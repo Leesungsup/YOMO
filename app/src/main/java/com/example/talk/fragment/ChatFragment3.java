@@ -101,20 +101,24 @@ public class ChatFragment3 extends Fragment {
         private String uid;
         private ArrayList<String> destinationUsers = new ArrayList<>();
 
+
         public ChatRecyclerViewAdapter() {
             uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("menu").equalTo(selectedMenu).addListenerForSingleValueEvent(new ValueEventListener() {
+            FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/" + uid).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     chatModels.clear();
 
                     for (DataSnapshot item : dataSnapshot.getChildren()) {
-                        chatModels.add(item.getValue(ChatModel.class));
-                        keys.add(item.getKey());
+                        String menuData = item.getValue(ChatModel.class).menu.toString();
+                        if(menuData.equals(selectedMenu)) {
+                            chatModels.add(item.getValue(ChatModel.class));
+                            keys.add(item.getKey());
 
-                        notifyDataSetChanged();}
-                    Log.d("MainActivity", "343434234234 getData: " + chatModels.toString());
+                            notifyDataSetChanged();
+                        }
+                    }
                 }
 
                 @Override
@@ -123,6 +127,9 @@ public class ChatFragment3 extends Fragment {
                 }
             });
         }
+
+
+
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
