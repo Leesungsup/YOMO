@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.talk.model.UserModel;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,6 +47,7 @@ public class SignupActivity extends AppCompatActivity {
     private String pathUri;
     private FirebaseStorage mStorage;
     private FirebaseDatabase mDatabase;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,7 @@ public class SignupActivity extends AppCompatActivity {
         });
         mStorage = FirebaseStorage.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         email = (EditText) findViewById(R.id.signupActivity_edittext_email);
         name = (EditText) findViewById(R.id.signupActivity_edittext_name);
         password = (EditText) findViewById(R.id.signupActivity_edittext_password);
@@ -80,6 +83,16 @@ public class SignupActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            firebaseAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(SignupActivity.this, "Register Success, check your email for verification", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Toast.makeText(SignupActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                             //uid 받아오기
                             final String uid = task.getResult().getUser().getUid();
                             /*final Uri file = Uri.fromFile(new File(pathUri));
@@ -120,7 +133,8 @@ public class SignupActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            SignupActivity.this.finish();
+                                            //SignupActivity.this.finish();
+                                            startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                                         }
                                     });
 
@@ -135,6 +149,7 @@ public class SignupActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
     //사진선택
     @Override

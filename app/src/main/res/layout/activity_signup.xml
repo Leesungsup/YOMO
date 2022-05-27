@@ -65,6 +65,7 @@
             android:background="#FAA51A"
             android:layout_margin="5dp"/>
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/signupActivity_button_signup"
         android:layout_width="150dp"
@@ -72,4 +73,5 @@
         android:background="@color/main_color"
         android:text="Sign Up"
         android:layout_marginTop="50dp"/>
+
 </LinearLayout>

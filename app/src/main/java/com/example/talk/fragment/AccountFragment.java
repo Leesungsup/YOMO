@@ -1,17 +1,18 @@
 package com.example.talk.fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -24,6 +25,15 @@ import java.util.Map;
 
 
 public class AccountFragment extends Fragment {
+    private Activity a;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof Activity){
+            a =(Activity)context;
+        }
+    }
 
     @Nullable
     @Override
@@ -31,6 +41,7 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account,container,false);
 
         TextView textviewmessage = (TextView) view.findViewById(R.id.accountFragment_button_comment);
+        TextView textviewsms = (TextView) view.findViewById(R.id.accountFragment_button_sms);
         textviewmessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,10 +49,19 @@ public class AccountFragment extends Fragment {
             }
         });
 
+//        textviewsms.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(a, SmsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
         return view;
-
-
     }
+
+
+
     void showDialog(Context context){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

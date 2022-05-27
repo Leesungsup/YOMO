@@ -78,13 +78,14 @@
             android:src="@drawable/ic_error_outline_black"/>
 
         <TextView
+            android:id="@+id/accountFragment_button_sms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:text="버전정보" />
+            android:text="본인인증" />
 
         <LinearLayout
             android:layout_width="match_parent"

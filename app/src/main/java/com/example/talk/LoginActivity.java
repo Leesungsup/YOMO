@@ -64,16 +64,20 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user != null){
+                if(user != null && firebaseAuth.getCurrentUser().isEmailVerified()){
                     //로그인
                     Intent intent = new Intent(LoginActivity.this,MainActivity2.class);
                     if(intent!=null) {
                         startActivity(intent);
                         finish();
                     }
-                }else{
+                }else if(user != null){
                     //로그아웃
+                    Toast.makeText(LoginActivity.this, "Please verify your email", Toast.LENGTH_LONG).show();
+                }else{
+
                 }
+
 
             }
         };
@@ -85,8 +89,13 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if (!task.isSuccessful()) {
-                            //로그인 실패한부분.
-                            Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                                //startActivity(new Intent(LoginActivity.this, MainActivity2.class));
+                            }else{
+                                //로그인 실패한부분.
+                                //Toast.makeText(LoginActivity.this, "Please 2222verify your email", Toast.LENGTH_LONG).show();
+                            }
+
                         }
                     }
                 });
