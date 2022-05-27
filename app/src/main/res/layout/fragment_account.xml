@@ -85,7 +85,7 @@
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:textSize="16dp"
-            android:text="본인인증" />
+            android:text="버전확인" />
 
         <LinearLayout
             android:layout_width="match_parent"
