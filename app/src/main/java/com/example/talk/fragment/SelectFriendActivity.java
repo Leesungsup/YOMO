@@ -76,7 +76,7 @@ public class SelectFriendActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 chatModel.users.put(myUid,true);
-                chatModel.users.put("UaIbgqUdySeIEjZGZmkVPkI1mSf2",true);
+                chatModel.users.put("N1OdwdxHvYRr0iUhJNfD4aUWsG63",true);
                 chatModel.title=title.getText().toString();
                 chatModel.host=myUid;
                 FirebaseDatabase.getInstance().getReference().child("chatrooms").push().setValue(chatModel);

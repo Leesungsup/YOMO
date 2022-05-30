@@ -31,6 +31,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.talk.R;
 import com.example.talk.fragment.ChatFragment;
 import com.example.talk.fragment.ChatFragment2;
+import com.example.talk.fragment.EvaluationActivity;
 import com.example.talk.fragment.PeopleActivity;
 import com.example.talk.fragment.SelectFriendActivity;
 import com.example.talk.model.ChatModel;
@@ -426,7 +427,10 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
                 //break;
 
             case R.id.drawer_finaltest:
-
+                Intent intent1=new Intent(GroupMessageActivity.this, EvaluationActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent1.putExtra("destinationRoom", destinationRoom);
+                GroupMessageActivity.this.startActivity(intent1);
                 break;
 
             case R.id.drawer_exit:

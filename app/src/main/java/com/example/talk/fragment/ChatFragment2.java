@@ -56,6 +56,8 @@ public class ChatFragment2 extends Fragment {
     String menu="defaults";
     String selectedMenu=null;
     String destinationRoom;
+    private String uid;
+    int lev;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat2, container, false);
@@ -95,15 +97,11 @@ public class ChatFragment2 extends Fragment {
 
             }
         });
-
-
-
-
         FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(view.getContext(),SelectFriendActivity.class));
+                startActivity(new Intent(view.getContext(), SelectFriendActivity.class));
             }
         });
         return view;
@@ -131,7 +129,6 @@ public class ChatFragment2 extends Fragment {
 
         private List<ChatModel> chatModels = new ArrayList<>();
         private List<String> keys = new ArrayList<>();
-        private String uid;
         private ArrayList<String> destinationUsers = new ArrayList<>();
 
         public ChatRecyclerViewAdapter() {
