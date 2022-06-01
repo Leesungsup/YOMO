@@ -58,6 +58,8 @@ public class ChatFragment2 extends Fragment {
     String destinationRoom;
     private String uid;
     int lev;
+    Intent intent1;
+    FloatingActionButton floatingActionButton;
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_chat2, container, false);
@@ -74,7 +76,6 @@ public class ChatFragment2 extends Fragment {
         categoryList.add(new CategoryDomain("치킨", "cat_3"));
         categoryList.add(new CategoryDomain("한식", "cat_4"));
         categoryList.add(new CategoryDomain("카페", "cat_5"));
-
         adapter = new CategoryAdapter(categoryList);
         recyclerViewCategotyList.setAdapter(adapter);
         //리사이클러뷰 클릭이벤트
@@ -97,13 +98,30 @@ public class ChatFragment2 extends Fragment {
 
             }
         });
-        FloatingActionButton floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton = (FloatingActionButton)view.findViewById(R.id.peoplefragment_floatingButton);
+        FirebaseDatabase.getInstance().getReference().child("users").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), SelectFriendActivity.class));
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ChatModel chatModel = dataSnapshot.getValue(ChatModel.class);
+                UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                //String value = dataSnapshot.getValue(String.class);
+                lev=userModel.level;
+                    floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(lev>=5) {
+                                startActivity(new Intent(view.getContext(), SelectFriendActivity.class));
+                            }else{
+                                Toast.makeText(getActivity(),"level이 부족합니다.",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
         return view;
     }
 
@@ -139,12 +157,13 @@ public class ChatFragment2 extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     chatModels.clear();
-
                     for (DataSnapshot item : dataSnapshot.getChildren()) {
                         chatModels.add(item.getValue(ChatModel.class));
                         keys.add(item.getKey());
+                    notifyDataSetChanged();
 
-                    notifyDataSetChanged();}
+                    }
+
                 }
 
                 @Override
@@ -152,7 +171,6 @@ public class ChatFragment2 extends Fragment {
 
                 }
             });
-
 
 //            //Firebase after filter                  //여기 수정!!!! chatrooms -> menu ?    menu -> selectedMenu
 //            FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild(menu).equalTo(true).addListenerForSingleValueEvent(new ValueEventListener() {

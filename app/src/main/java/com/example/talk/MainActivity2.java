@@ -3,6 +3,7 @@ package com.example.talk;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 //import android.support.v4.app.FragmentManager;
 //import android.support.v4.app.FragmentTransaction;
@@ -12,6 +13,7 @@ import com.example.talk.fragment.ChatFragment2;
 import com.example.talk.fragment.PeopleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 

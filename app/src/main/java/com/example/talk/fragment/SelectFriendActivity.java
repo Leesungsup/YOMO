@@ -1,5 +1,6 @@
 package com.example.talk.fragment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,6 +21,7 @@ import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,9 @@ import java.util.List;
 
 public class SelectFriendActivity extends AppCompatActivity {
     ChatModel chatModel = new ChatModel();
+    int lev;
+    String myUid;
+    int value;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +52,6 @@ public class SelectFriendActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.selectFriendActivity_button);
         EditText title = (EditText) findViewById(R.id.groupMessageActivity_title);
         RadioGroup colorType = findViewById(R.id.radio_menu);
-
         //라디오버튼 체크시 이벤트
         colorType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -74,7 +78,6 @@ public class SelectFriendActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 chatModel.users.put(myUid,true);
                 chatModel.users.put("N1OdwdxHvYRr0iUhJNfD4aUWsG63",true);
                 chatModel.title=title.getText().toString();

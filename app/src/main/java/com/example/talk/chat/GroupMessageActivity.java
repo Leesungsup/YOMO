@@ -102,7 +102,6 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
                 for(DataSnapshot item : dataSnapshot.getChildren()){
                     users.put(item.getKey(),item.getValue(UserModel.class));
                 }
-                System.out.println(users.size());
                 init();
                 recyclerView = (RecyclerView) findViewById(R.id.groupMessageActivity_recyclerview);
                 recyclerView.setAdapter(new GroupMessageRecyclerViewAdapter());
@@ -121,8 +120,6 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
                 //String value = dataSnapshot.getValue(String.class);
                 hostname[0] =chatModel.host;
                 chatTitle=chatModel.title;
-                //Log.e("333333","title"+chatModel.title);
-                Log.e("333333","title"+chatTitle);
                 getSupportActionBar().setTitle(chatTitle);
             }
 
