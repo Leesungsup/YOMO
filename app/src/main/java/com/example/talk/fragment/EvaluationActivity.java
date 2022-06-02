@@ -40,7 +40,6 @@ public class EvaluationActivity extends AppCompatActivity {
                 FirebaseDatabase.getInstance().getReference().child("users").child(hostname).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        ChatModel chatModel = dataSnapshot.getValue(ChatModel.class);
                         UserModel userModel = dataSnapshot.getValue(UserModel.class);
                         //String value = dataSnapshot.getValue(String.class);
                         lev1 =userModel.level;
