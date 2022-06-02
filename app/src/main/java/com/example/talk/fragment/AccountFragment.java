@@ -17,12 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.talk.R;
-import com.example.talk.model.UserModel;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -46,27 +42,9 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account,container,false);
 
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         TextView textviewmessage = (TextView) view.findViewById(R.id.accountFragment_button_comment);
         TextView mylevel = view.findViewById(R.id.myLevel);
         TextView myname = view.findViewById(R.id.myName);
-        FirebaseDatabase.getInstance().getReference().child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                UserModel userModel = dataSnapshot.getValue(UserModel.class);
-                //String value = dataSnapshot.getValue(String.class);
-                int lev1 =userModel.level;
-                String name = userModel.userName;
-                myname.setText(name);
-                mylevel.setText(String.valueOf(lev1));
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
         textviewmessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
