@@ -34,6 +34,60 @@
         android:background="@color/gray"/>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="60dp"
+            android:text="UserName : "
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/myName"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:text="username"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="60dp"
+            android:text="My Level : "
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/myLevel"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:text="1 "
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/setting_announce"
         android:layout_width="match_parent"
         android:layout_height="60dp"

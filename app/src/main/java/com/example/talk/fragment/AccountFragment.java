@@ -20,6 +20,8 @@ import com.example.talk.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +43,8 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account,container,false);
 
         TextView textviewmessage = (TextView) view.findViewById(R.id.accountFragment_button_comment);
-        TextView textviewsms = (TextView) view.findViewById(R.id.accountFragment_button_sms);
+        TextView mylevel = view.findViewById(R.id.myLevel);
+        TextView myname = view.findViewById(R.id.myName);
         textviewmessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,13 +52,9 @@ public class AccountFragment extends Fragment {
             }
         });
 
-//        textviewsms.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(a, SmsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        //database로 부터 user의 username이랑 level 불러오기
+
+
 
         return view;
     }

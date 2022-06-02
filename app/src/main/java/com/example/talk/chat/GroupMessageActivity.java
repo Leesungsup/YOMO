@@ -416,11 +416,11 @@ public class GroupMessageActivity extends AppCompatActivity implements Navigatio
     public boolean onNavigationItemSelected(MenuItem item){
         int id = item.getItemId();
         switch (id){
-            case R.id.drawer_members:
-                Intent intent=new Intent(GroupMessageActivity.this, PeopleActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                intent.putExtra("destinationRoom", destinationRoom);
-                GroupMessageActivity.this.startActivity(intent);
+            //case R.id.drawer_members:
+                //Intent intent=new Intent(GroupMessageActivity.this, PeopleActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                //intent.putExtra("destinationRoom", destinationRoom);
+                //GroupMessageActivity.this.startActivity(intent);
                 //break;
 
             case R.id.drawer_finaltest:

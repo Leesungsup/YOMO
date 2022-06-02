@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 public class EvaluationActivity extends AppCompatActivity {
     private RatingBar ratingbar;
@@ -67,6 +68,7 @@ public class EvaluationActivity extends AppCompatActivity {
                 lev1= (int) (lev1+ratingbar.getRating());
                 FirebaseDatabase.getInstance().getReference().child("users").child(hostname).child("level").removeValue();
                 FirebaseDatabase.getInstance().getReference().child("users").child(hostname).child("level").setValue(lev1);
+                Toast.makeText(getApplicationContext(),"평가완료",Toast.LENGTH_SHORT).show();
             }
         });
     }
