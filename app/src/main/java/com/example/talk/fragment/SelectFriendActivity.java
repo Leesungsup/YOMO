@@ -78,6 +78,7 @@ public class SelectFriendActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 chatModel.users.put(myUid,true);
                 chatModel.users.put("N1OdwdxHvYRr0iUhJNfD4aUWsG63",true);
                 chatModel.title=title.getText().toString();
