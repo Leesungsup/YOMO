@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.talk.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,10 +46,18 @@ public class AccountFragment extends Fragment {
         TextView textviewmessage = (TextView) view.findViewById(R.id.accountFragment_button_comment);
         TextView mylevel = view.findViewById(R.id.myLevel);
         TextView myname = view.findViewById(R.id.myName);
+        TextView version = view.findViewById(R.id.accountFragment_button_sms);
         textviewmessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDialog(view.getContext());
+            }
+        });
+
+        version.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(),"version : 1.0.0",Toast.LENGTH_SHORT).show();
             }
         });
 

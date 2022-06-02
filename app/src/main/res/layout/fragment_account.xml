@@ -133,7 +133,7 @@
 
         <TextView
             android:id="@+id/accountFragment_button_sms"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center"
