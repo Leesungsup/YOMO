@@ -26,6 +26,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.talk.CategoryAdapter;
 import com.example.talk.CategoryDomain;
 import com.example.talk.R;
+import com.example.talk.UploadImage;
 import com.example.talk.chat.GroupMessageActivity;
 import com.example.talk.chat.MessageActivity;
 import com.example.talk.model.ChatModel;
@@ -110,7 +111,8 @@ public class ChatFragment2 extends Fragment {
                         @Override
                         public void onClick(View view) {
                             if(lev>=5) {
-                                startActivity(new Intent(view.getContext(), SelectFriendActivity.class));
+                                startActivity(new Intent(view.getContext(), UploadImage.class));
+                                //startActivity(new Intent(view.getContext(), SelectFriendActivity.class));
                             }else{
                                 Toast.makeText(getActivity(),"level이 부족합니다.",Toast.LENGTH_LONG).show();
                             }

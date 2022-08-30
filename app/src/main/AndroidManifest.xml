@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.talk">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,6 +21,7 @@
         <activity android:name=".SignupActivity" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".UploadImage" />
         <activity android:name=".fragment.SelectFriendActivity" />
         <activity android:name=".fragment.EvaluationActivity" />
         <!--

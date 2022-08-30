@@ -51,8 +51,7 @@ public class UploadImage extends AppCompatActivity {
     private AlertDialog.Builder builder;
 
     //  SERVER URL
-    //String UPLOAD_URL = "http://192.168.1.5:3000/api/image";
-    String UPLOAD_URL = "http://172.16.229.234:3000/api/image";
+    String UPLOAD_URL = "";
 
     @Override
     protected void onStart() {
